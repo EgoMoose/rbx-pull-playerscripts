@@ -24,7 +24,7 @@ Package.replace(copy: ModuleScript)
 
 ## Patching the PlayerModule
 
-The following pertains specifically to how the lune scripts patch the PlayerModule such that the CameraModule API public (which it is not by default).
+The following pertains specifically to how the lune scripts patch the PlayerModule such that the CameraModule API is made public (which it is not by default).
 
 #### Only header additions
 
