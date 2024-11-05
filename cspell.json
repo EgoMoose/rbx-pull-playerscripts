@@ -1,0 +1,16 @@
+{
+    "version": "0.2",
+    "ignorePaths": [],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "automatedupdate",
+        "playermodule",
+        "playerscripts",
+        "serde",
+        "setmetatable",
+        "zzlib"
+    ],
+    "ignoreWords": [],
+    "import": []
+}

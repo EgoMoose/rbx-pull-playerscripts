@@ -1,0 +1,9 @@
+[package]
+description = "https://github.com/EgoMoose/rbx-pull-playerscripts"
+exclude = ["**"]
+include = ["src", "src/**", "wally.toml", "wally.lock", "default.project.json"]
+name = "unknown/rbxcharactersounds"
+private = true
+realm = "shared"
+registry = "https://github.com/UpliftGames/wally-index"
+version = "649.0.6490878"
