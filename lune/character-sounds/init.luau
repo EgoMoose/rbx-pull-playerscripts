@@ -28,6 +28,12 @@ local function main()
 			fs.copy(RelativePath("./modifications/PackageInterface.luau"), "src/init.luau")
 			fs.copy(tmpDirectory .. "/RbxCharacterSounds", "src/RbxCharacterSounds")
 
+			-- return an empty table b/c we're converting to a module script
+			fs.writeFile(
+				"src/RbxCharacterSounds/init.luau",
+				fs.readFile("src/RbxCharacterSounds/init.luau") .. "\nreturn {}"
+			)
+
 			fs.writeFile(
 				"src/VersionInfo.json",
 				net.jsonEncode({
