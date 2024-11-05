@@ -16,13 +16,13 @@ function Forker.getCopy()
 	return targetInstance:Clone()
 end
 
-function Forker.replace()
+function Forker.replace(copy: ModuleScript)
 	local existing = StarterPlayerScripts:FindFirstChild(targetInstance.Name)
 	if existing then
 		existing:Destroy()
 	end
 
-	targetInstance.Parent = StarterPlayerScripts
+	copy.Parent = StarterPlayerScripts
 end
 
 return Forker
