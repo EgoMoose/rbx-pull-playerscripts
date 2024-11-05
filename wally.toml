@@ -1,9 +1,9 @@
 [package]
+name = "unknown/playerscripts"
 description = "https://github.com/EgoMoose/rbx-pull-playerscripts"
+version = "0.0.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
 exclude = ["**"]
 include = ["src", "src/**", "wally.toml", "wally.lock", "default.project.json"]
-name = "unknown/rbxcharactersounds"
 private = true
-realm = "shared"
-registry = "https://github.com/UpliftGames/wally-index"
-version = "649.0.6490878"
