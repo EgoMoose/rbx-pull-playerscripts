@@ -3,8 +3,8 @@
 local fs = require("@lune/fs")
 local net = require("@lune/net")
 
-local zzlib = require("./zzlib/init")
-local VersionHelper = require("./VersionHelper")
+local zzlib = require("@self/zzlib/init")
+local VersionHelper = require("@self/VersionHelper")
 
 local function download(url: string)
 	local content = net.request({

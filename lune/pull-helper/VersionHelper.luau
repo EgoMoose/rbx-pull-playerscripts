@@ -1,6 +1,7 @@
 --!strict
 
 local net = require("@lune/net")
+local serde = require("@lune/serde")
 
 local VersionHelper = {}
 
@@ -16,7 +17,7 @@ local function getCachedRequest()
 		})
 
 		if result.ok then
-			local decoded = net.jsonDecode(result.body)
+			local decoded = serde.decode("json", result.body)
 
 			local versionArr = {}
 			for _, n in decoded.version:split(".") do

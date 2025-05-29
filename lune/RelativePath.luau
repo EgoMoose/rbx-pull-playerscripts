@@ -1,8 +1,14 @@
 --!strict
 
+local fs = require("@lune/fs")
+
 local function relativePath(path: string)
 	local root = debug.info(2, "s"):sub(10, -3):gsub("\\", "/")
-	local splitRoot = root:split("/")
+	local splitRoot = string.split(root, "/")
+
+	if not fs.isDir(table.concat(splitRoot, "/")) then
+		table.remove(splitRoot)
+	end
 
 	for _, step in path:split("/") do
 		local onlyDots = step:match("[%.]+") == step

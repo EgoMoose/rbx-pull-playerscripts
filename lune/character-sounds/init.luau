@@ -1,11 +1,10 @@
 --!strict
 
 local fs = require("@lune/fs")
-local net = require("@lune/net")
 local serde = require("@lune/serde")
 
-local PullHelper = require("../pull-helper")
-local RelativePath = require("../RelativePath")
+local PullHelper = require("@root/lune/pull-helper")
+local RelativePath = require("@root/lune/RelativePath")
 
 local NAME = "RbxCharacterSounds"
 
@@ -25,7 +24,7 @@ local function main()
 			end
 
 			fs.writeDir("src")
-			fs.copy(RelativePath("./modifications/PackageInterface.luau"), "src/init.luau")
+			fs.copy(RelativePath("modifications/PackageInterface.luau"), "src/init.luau")
 			fs.copy(tmpDirectory .. "/RbxCharacterSounds", "src/RbxCharacterSounds")
 
 			-- return an empty table b/c we're converting to a module script
@@ -36,7 +35,7 @@ local function main()
 
 			fs.writeFile(
 				"src/VersionInfo.json",
-				net.jsonEncode({
+				serde.encode("json", {
 					version = table.concat(PullHelper.getVersion(), "."),
 					guid = PullHelper.getGuid(),
 				}, true)
@@ -44,7 +43,7 @@ local function main()
 
 			fs.writeFile(
 				"default.project.json",
-				net.jsonEncode({
+				serde.encode("json", {
 					name = NAME,
 					tree = {
 						["$path"] = "src",

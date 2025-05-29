@@ -1,11 +1,10 @@
 --!strict
 
 local fs = require("@lune/fs")
-local net = require("@lune/net")
 local serde = require("@lune/serde")
 
-local PullHelper = require("../pull-helper")
-local RelativePath = require("../RelativePath")
+local PullHelper = require("@root/lune/pull-helper")
+local RelativePath = require("@root/lune/RelativePath")
 
 local NAME = "PlayerModule"
 
@@ -25,18 +24,18 @@ local function main()
 			end
 
 			fs.writeDir("src")
-			fs.copy(RelativePath("./modifications/PackageInterface.luau"), "src/init.luau")
+			fs.copy(RelativePath("modifications/PackageInterface.luau"), "src/init.luau")
 			fs.copy(tmpDirectory .. "/PlayerModule.module", "src/PlayerModule")
 
-			fs.copy(RelativePath("./modifications/Patch.luau"), "src/PlayerModule/Patch.luau")
+			fs.copy(RelativePath("modifications/Patch.luau"), "src/PlayerModule/Patch.luau")
 
 			local cameraModuleContent = fs.readFile("src/PlayerModule/CameraModule/init.luau")
-			local cameraModuleHeader = fs.readFile(RelativePath("./modifications/CameraModuleHeader.luau"))
+			local cameraModuleHeader = fs.readFile(RelativePath("modifications/CameraModuleHeader.luau"))
 			fs.writeFile("src/PlayerModule/CameraModule/init.luau", cameraModuleHeader .. "\n" .. cameraModuleContent)
 
 			fs.writeFile(
 				"src/VersionInfo.json",
-				net.jsonEncode({
+				serde.encode("json", {
 					version = table.concat(PullHelper.getVersion(), "."),
 					guid = PullHelper.getGuid(),
 				}, true)
@@ -44,7 +43,7 @@ local function main()
 
 			fs.writeFile(
 				"default.project.json",
-				net.jsonEncode({
+				serde.encode("json", {
 					name = NAME,
 					tree = {
 						["$path"] = "src",
