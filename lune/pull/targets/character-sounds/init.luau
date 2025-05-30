@@ -3,10 +3,10 @@
 local fs = require("@lune/fs")
 local serde = require("@lune/serde")
 
-local PullHelper = require("@root/lune/pull-helper")
-local RelativePath = require("@root/lune/RelativePath")
+local PullHelper = require("@root/lune/pull/helpers/pull-helper")
+local RelativePath = require("@root/lune/pull/helpers/RelativePath")
 
-local NAME = "PlayerModule"
+local NAME = "RbxCharacterSounds"
 
 local function main()
 	PullHelper.pull({
@@ -14,8 +14,8 @@ local function main()
 		guid = PullHelper.getGuid(),
 
 		manifest = {
-			{ "PlayerScripts", "StarterPlayerScripts", "PlayerModule.module" },
-			{ "PlayerScripts", "StarterPlayerScripts", "PlayerModule.module.lua" },
+			{ "PlayerScripts", "StarterPlayerScriptsCommon", "RbxCharacterSounds" },
+			{ "PlayerScripts", "StarterPlayerScriptsCommon", "RbxCharacterSounds.lua" },
 		},
 
 		processor = function(tmpDirectory)
@@ -25,13 +25,13 @@ local function main()
 
 			fs.writeDir("src")
 			fs.copy(RelativePath("modifications/PackageInterface.luau"), "src/init.luau")
-			fs.copy(tmpDirectory .. "/PlayerModule.module", "src/PlayerModule")
+			fs.copy(tmpDirectory .. "/RbxCharacterSounds", "src/RbxCharacterSounds")
 
-			fs.copy(RelativePath("modifications/Patch.luau"), "src/PlayerModule/Patch.luau")
-
-			local cameraModuleContent = fs.readFile("src/PlayerModule/CameraModule/init.luau")
-			local cameraModuleHeader = fs.readFile(RelativePath("modifications/CameraModuleHeader.luau"))
-			fs.writeFile("src/PlayerModule/CameraModule/init.luau", cameraModuleHeader .. "\n" .. cameraModuleContent)
+			-- return an empty table b/c we're converting to a module script
+			fs.writeFile(
+				"src/RbxCharacterSounds/init.luau",
+				fs.readFile("src/RbxCharacterSounds/init.luau") .. "\nreturn {}"
+			)
 
 			fs.writeFile(
 				"src/VersionInfo.json",
@@ -60,4 +60,4 @@ local function main()
 	})
 end
 
-main()
+return main

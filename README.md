@@ -1,10 +1,10 @@
 # rbx-pull-playerscripts
 
-Lune scripts for pulling, packaging, and publishing Roblox playerscripts.
+Lune script for pulling and packaging Roblox playerscripts.
 
 In specific the following playerscripts are supported:
-- PlayerModule: `lune run playermodule`
-- RbxCharacterSounds: `lune run character-sounds`
+- PlayerModule: `lune run pull playermodule`
+- RbxCharacterSounds: `lune run pull character-sounds`
 
 This is more or less a successor to [this tool.](https://github.com/UpliftGames/pull-player-scripts)
 
