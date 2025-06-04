@@ -28,7 +28,7 @@ jobs:
 
       - name: "Run lune script"
         run: |
-          lune run ${{ matrix.script-name }}
+          lune run pull ${{ matrix.script-name }}
 
       - name: "Build rbxm"
         run: |
