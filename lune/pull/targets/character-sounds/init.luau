@@ -23,8 +23,9 @@ local function main()
 				fs.removeDir("src")
 			end
 
+			local fullPath = RelativePath("modifications/PackageInterface.luau")
 			fs.writeDir("src")
-			fs.copy(RelativePath("modifications/PackageInterface.luau"), "src/init.luau")
+			fs.copy(fullPath, "src/init.luau")
 			fs.copy(tmpDirectory .. "/RbxCharacterSounds", "src/RbxCharacterSounds")
 
 			-- return an empty table b/c we're converting to a module script

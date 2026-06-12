@@ -18,10 +18,10 @@ local function getRokitLuneVersion()
 end
 
 local function pull(target: string)
-	local path = RelativePath(`targets/{target}`)
-	assert(fs.isFile(path) or fs.isDir(path), `No path at {path}`)
+	local fullPath, rootPath = RelativePath(`targets/{target}`)
+	assert(fs.isFile(fullPath) or fs.isDir(fullPath), `No path at {fullPath}`)
 
-	local pullCallback = require("@root/" .. path) :: () -> ()
+	local pullCallback = require(rootPath) :: () -> ()
 	pullCallback()
 end
 

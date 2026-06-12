@@ -24,13 +24,16 @@ local function main()
 			end
 
 			fs.writeDir("src")
-			fs.copy(RelativePath("modifications/PackageInterface.luau"), "src/init.luau")
+			local fullPath = RelativePath("modifications/PackageInterface.luau")
+			fs.copy(fullPath, "src/init.luau")
 			fs.copy(tmpDirectory .. "/PlayerModule.module", "src/PlayerModule")
 
-			fs.copy(RelativePath("modifications/Patch.luau"), "src/PlayerModule/Patch.luau")
+			fullPath = RelativePath("modifications/Patch.luau")
+			fs.copy(fullPath, "src/PlayerModule/Patch.luau")
 
 			local cameraModuleContent = fs.readFile("src/PlayerModule/CameraModule/init.luau")
-			local cameraModuleHeader = fs.readFile(RelativePath("modifications/CameraModuleHeader.luau"))
+			fullPath = RelativePath("modifications/CameraModuleHeader.luau")
+			local cameraModuleHeader = fs.readFile(fullPath)
 			fs.writeFile("src/PlayerModule/CameraModule/init.luau", cameraModuleHeader .. "\n" .. cameraModuleContent)
 
 			fs.writeFile(

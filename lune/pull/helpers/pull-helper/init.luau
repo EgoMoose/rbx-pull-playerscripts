@@ -3,7 +3,7 @@
 local fs = require("@lune/fs")
 local net = require("@lune/net")
 
-local zzlib = require("@self/zzlib/init")
+local zzlib = require("@self/zzlib")
 local VersionHelper = require("@self/VersionHelper")
 
 local function download(url: string)

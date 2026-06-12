@@ -1,5 +1,5 @@
 {
-  "name": "rbx-pull-playerscripts",
+  "name": "PlayerModule",
   "tree": {
     "$path": "src"
   }
